@@ -1,0 +1,77 @@
+ Business Insights and Recommendations
+
+1. Project Overview
+
+This document summarizes key findings from the SQL analysis of retail banking customers, accounts, transactions, and merchants.
+
+2. Customer and Account Insights
+
+- The dataset contains 9,000 customers.
+- The bank has 14,000 accounts.
+- 12,773 accounts have no recorded closure date.
+- 1,227 accounts have a recorded closure date.
+- Current accounts are the most common account type, followed by savings, credit card, and loan accounts.
+- The average number of accounts per customer is 1.56.
+
+ 3. Transaction Insights
+
+- The dataset contains 320,000 transactions.
+- The total recorded transaction amount is 64,615,183.94.
+- Total credit transaction amount: 52,920,229.11.
+- Total debit transaction amount: 11,694,954.83.
+- The difference between total credits and total debits is 41,225,274.28.
+- Salary transactions account for 50,740,700.00 of the recorded transaction amount, making salary the largest contributor to transaction value.
+- December 2024 recorded 18,296 transactions, totalling approximately 3.64 million in recorded transaction amounts. This was a peak month compared with many other months in the dataset.
+- Card transactions had the highest transaction volume among the channels analysed.
+- The 10 largest transactions were all salary credits. After excluding salary transactions, the largest transaction was a transfer-out debit of 3,841.42.
+- Transaction activity was also compared by year, direction, and transaction type to understand transaction patterns.
+
+Interpretation: The difference between credits and debits represents recorded transaction flows. It should not be interpreted as bank profit, customer account balance, or financial health without further analysis.
+
+ 4. Merchant Insights
+
+- Merchant activity was analysed by category and country, using transaction counts and total recorded transaction amounts.
+- The top merchants were ranked by total transaction amount to identify merchants associated with the highest recorded transaction values.
+- Merchant category performance was compared using transaction counts, total amounts, and average transaction amounts.
+- Transactions without an associated merchant are excluded from analyses that use an INNER JOIN between transactions and merchants. Therefore, these results may not represent all transactions.
+- Further analysis should quantify the number and proportion of transactions without a merchant and identify the leading merchant categories and countries using verified query results.
+- Of the 320,000 transactions, 124,545 (approximately 38.9%) have no associated merchant ID.
+- Merchant analyses using INNER JOIN exclude these transactions, so merchant-level findings cover only transactions linked to merchant records and should not be generalized to all banking transactions.
+
+ 5. Data Quality and Cleaning
+
+- Foreign-key relationship checks found no invalid references.
+- No missing customer email addresses were found.
+- No missing customer names were found.
+- 6,479 blank risk-band values were converted to SQL NULL.
+- Approximately 72.0% of customers (6,479 out of 9,000) have missing risk-band information.
+- Due to the high proportion of missing values, the available risk-band distribution may not represent all customers, so risk-related conclusions should be interpreted cautiously.
+- Transaction amounts contained no zero or negative values.
+
+ 6.Largest Transactions
+
+- The 10 largest transactions in the analysis were all salary credits. 
+- This indicates that the highest transaction amounts in the dataset are associated with salary payments.
+- Large transaction amounts alone do not indicate suspicious activity; further investigation would require additional context and relevant risk indicators.
+
+ 7. Advanced Analysis
+
+- Customer transaction counts were calculated.
+- Statistical analysis using the average and standard deviation was used to flag customers with unusually high transaction activity.
+- Some customers had substantially higher transaction counts than others. These results should be reviewed for possible data-quality issues or legitimate high-volume activity.
+- Transaction-count outliers alone do not establish unusual transaction amounts or fraudulent activity.
+- Further analysis of transaction amounts and customer-level patterns is recommended to improve anomaly detection.
+
+These results are indicators for further investigation, not proof of fraudulent activity.
+
+8. Recommendations
+
+- Validate unusually high customer transaction counts against source data before drawing business conclusions.
+- Extend anomaly detection to include transaction amounts as well as transaction counts.
+- Ensure business insights can be traced directly to the SQL queries that produce them.
+- Clearly distinguish transaction flows from account balances and profit.
+- Document data-cleaning steps and provide reproducible SQL queries for verification.
+
+ 9. Conclusion
+
+The project demonstrates relational database design, bulk data loading, data-quality validation, data cleaning, exploratory analysis, business analysis, and advanced SQL techniques using MySQL.
